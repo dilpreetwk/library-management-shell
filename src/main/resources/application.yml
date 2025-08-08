@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: shell
+
+  main:
+    web-application-type: none
+
+  shell:
+    interactive:
+      enabled: true
+    script:
+      enabled: true
+
+api-gateway-url: ${API_GATEWAY_URL:http://localhost:8080}

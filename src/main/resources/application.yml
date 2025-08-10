@@ -8,6 +8,9 @@ spring:
   shell:
     interactive:
       enabled: true
+    history:
+      enabled: true
+      name: .history
     script:
       enabled: true
 

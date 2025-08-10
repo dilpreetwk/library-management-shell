@@ -16,7 +16,7 @@ public interface BookClient {
     @GetExchange("/book/{id}")
     BookResponse getBookById(@PathVariable Long id);
 
-    @GetExchange("/book")
+    @GetExchange("/book/")
     PageResponse<BookResponse> getAllBooks(
             @RequestParam(value = "pageSize", required = false) Integer pageSize,
             @RequestParam(value = "pageNumber", required = false) Integer pageNumber,

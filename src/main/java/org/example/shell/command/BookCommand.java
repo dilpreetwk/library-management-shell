@@ -8,6 +8,8 @@ import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.shell.standard.ShellOption;
 
+import java.util.stream.Collectors;
+
 @ShellComponent
 @RequiredArgsConstructor
 public class BookCommand {
@@ -29,6 +31,8 @@ public class BookCommand {
             @ShellOption(defaultValue = "") String search
     ) {
         PageResponse<BookResponse> pageResponses = bookClient.getAllBooks(pageSize, pageNumber, sort, sortDirection, search);
-        return pageResponses.toString();
+        return pageResponses.getContent().stream()
+                .map(BookResponse::toString)
+                .collect(Collectors.joining("\n"));
     }
 }

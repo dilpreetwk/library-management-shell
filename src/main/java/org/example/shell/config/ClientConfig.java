@@ -2,6 +2,7 @@ package org.example.shell.config;
 
 import org.example.shell.client.AuthorClient;
 import org.example.shell.client.BookClient;
+import org.example.shell.client.BorrowClient;
 import org.example.shell.client.GenreClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -48,5 +49,14 @@ public class ClientConfig {
                 .build();
 
         return factory.createClient(AuthorClient.class);
+    }
+
+    @Bean
+    public BorrowClient borrowClient(WebClient gatewayWebClient) {
+        HttpServiceProxyFactory factory = HttpServiceProxyFactory
+                .builderFor(WebClientAdapter.create(gatewayWebClient))
+                .build();
+
+        return factory.createClient(BorrowClient.class);
     }
 }

@@ -4,6 +4,7 @@ import org.example.shell.client.AuthorClient;
 import org.example.shell.client.BookClient;
 import org.example.shell.client.BorrowClient;
 import org.example.shell.client.GenreClient;
+import org.example.shell.client.PolicyClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -58,5 +59,14 @@ public class ClientConfig {
                 .build();
 
         return factory.createClient(BorrowClient.class);
+    }
+
+    @Bean
+    public PolicyClient policyClient(WebClient gatewayWebClient) {
+        HttpServiceProxyFactory factory = HttpServiceProxyFactory
+                .builderFor(WebClientAdapter.create(gatewayWebClient))
+                .build();
+
+        return factory.createClient(PolicyClient.class);
     }
 }
